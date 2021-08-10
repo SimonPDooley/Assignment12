@@ -63,18 +63,21 @@
   INSERT INTO `pizza_order` (`order_id`, `pizza_id`)
   values (3, 4);
   
+  -- Grouping and reading all tables
   SELECT * FROM `customer` c
   JOIN `order` o on c.customer_id = o.customer_id
   JOIN `pizza_order` po on o.order_id = po.order_id
   JOIN `pizza` p on p.pizza_id = po.pizza_id;
 
+  -- Assignment 12, Question 4
   SELECT c.customer_id, `name`, sum(cost) FROM `customer` c
   JOIN `order` o on c.customer_id = o.customer_id
   JOIN `pizza_order` po on o.order_id = po.order_id
   JOIN `pizza` p on p.pizza_id = po.pizza_id
   GROUP BY c.customer_id;
   
-  SELECT c.customer_id, `name`, o.time_of_order, count(o.order_id) FROM `customer` c
+  -- Assignment 12, Question 5
+  SELECT c.customer_id, `name`, DATE(o.time_of_order), count(o.order_id) FROM `customer` c
   JOIN `order` o on c.customer_id = o.customer_id
   JOIN `pizza_order` po on o.order_id = po.order_id
   JOIN `pizza` p on p.pizza_id = po.pizza_id
